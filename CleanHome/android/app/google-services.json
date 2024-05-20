@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "718930442337",
+    "project_id": "clean-home-application",
+    "storage_bucket": "clean-home-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718930442337:android:eab0a08fd48b24940dd220",
+        "android_client_info": {
+          "package_name": "com.lyadev.cleanhome"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOAp32BXp-L6ka-8EjkvwMguvcRpGBgSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718930442337:android:bb09cd5917c32fe50dd220",
+        "android_client_info": {
+          "package_name": "com.thedeveloper.cleanhome"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOAp32BXp-L6ka-8EjkvwMguvcRpGBgSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
