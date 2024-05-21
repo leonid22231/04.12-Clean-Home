@@ -31,7 +31,13 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAppCheck.instance.activate(webProvider: ReCaptchaV3Provider("recaptcha-v3-site-key"), androidProvider: kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity, appleProvider: kDebugMode ? AppleProvider.debug : AppleProvider.appAttestWithDeviceCheckFallback);
+  await FirebaseAppCheck.instance.activate(
+      webProvider: ReCaptchaV3Provider("recaptcha-v3-site-key"),
+      androidProvider:
+          kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity,
+      appleProvider: kDebugMode
+          ? AppleProvider.debug
+          : AppleProvider.appAttestWithDeviceCheckFallback);
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   await FirebaseMessaging.instance.setAutoInitEnabled(true);
   int i = 0;
@@ -52,16 +58,34 @@ void main() async {
     print("Notify update $event");
     Dio dio = Dio();
     RestClient client = RestClient(dio);
-    IdTokenResult? token = await FirebaseAuth.instance.currentUser?.getIdTokenResult();
+    IdTokenResult? token =
+        await FirebaseAuth.instance.currentUser?.getIdTokenResult();
     client.notifyUpdate("Bearer ${token!.token!}", event);
   });
-  AwesomeNotifications().initialize(null, [NotificationChannel(channelGroupKey: 'basic_channel_group', channelKey: 'basic_channel', channelName: 'Basic notifications', channelDescription: 'Notification channel for basic tests', defaultColor: Color(0xFF9D50DD), ledColor: Colors.white)], channelGroups: [NotificationChannelGroup(channelGroupKey: 'basic_channel_group', channelGroupName: 'Basic group')], debug: true);
+  AwesomeNotifications().initialize(
+      null,
+      [
+        NotificationChannel(
+            channelGroupKey: 'basic_channel_group',
+            channelKey: 'basic_channel',
+            channelName: 'Basic notifications',
+            channelDescription: 'Notification channel for basic tests',
+            defaultColor: Color(0xFF9D50DD),
+            ledColor: Colors.white)
+      ],
+      channelGroups: [
+        NotificationChannelGroup(
+            channelGroupKey: 'basic_channel_group',
+            channelGroupName: 'Basic group')
+      ],
+      debug: true);
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
-  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
   static const String name = 'Awesome Notifications - Example App';
   static const Color mainColor = Colors.deepPurple;
 
@@ -76,7 +100,14 @@ class _MyApp extends State<MyApp> {
   @override
   void initState() {
     loginBloc = LoginBloc();
-    AwesomeNotifications().setListeners(onActionReceivedMethod: NotificationController.onActionReceivedMethod, onNotificationCreatedMethod: NotificationController.onNotificationCreatedMethod, onNotificationDisplayedMethod: NotificationController.onNotificationDisplayedMethod, onDismissActionReceivedMethod: NotificationController.onDismissActionReceivedMethod);
+    AwesomeNotifications().setListeners(
+        onActionReceivedMethod: NotificationController.onActionReceivedMethod,
+        onNotificationCreatedMethod:
+            NotificationController.onNotificationCreatedMethod,
+        onNotificationDisplayedMethod:
+            NotificationController.onNotificationDisplayedMethod,
+        onDismissActionReceivedMethod:
+            NotificationController.onDismissActionReceivedMethod);
     super.initState();
   }
 
@@ -108,7 +139,8 @@ class _MyApp extends State<MyApp> {
                   GlobalCupertinoLocalizations.delegate,
                 ],
                 supportedLocales: const [Locale("ru"), Locale("en")],
-                locale: Locale(Platform.localeName.split("_")[0], Platform.localeName.split("_")[1]),
+                locale: Locale(Platform.localeName.split("_")[0],
+                    Platform.localeName.split("_")[1]),
                 navigatorKey: MyApp.navigatorKey,
                 theme: CustomTheme.theme1,
                 home: Main(
@@ -183,7 +215,8 @@ class _Main extends State<Main> {
   Future<List<String>> getRole() async {
     Dio dio = Dio();
     RestClient client = RestClient(dio);
-    IdTokenResult? tokenId = await FirebaseAuth.instance.currentUser?.getIdTokenResult();
+    IdTokenResult? tokenId =
+        await FirebaseAuth.instance.currentUser?.getIdTokenResult();
     String token = tokenId!.token!;
     if (kDebugMode) print("Token ${token}");
 
@@ -194,28 +227,36 @@ class _Main extends State<Main> {
 class NotificationController {
   /// Use this method to detect when a new notification or a schedule is created
   @pragma("vm:entry-point")
-  static Future<void> onNotificationCreatedMethod(ReceivedNotification receivedNotification) async {
+  static Future<void> onNotificationCreatedMethod(
+      ReceivedNotification receivedNotification) async {
     // Your code goes here
   }
 
   /// Use this method to detect every time that a new notification is displayed
   @pragma("vm:entry-point")
-  static Future<void> onNotificationDisplayedMethod(ReceivedNotification receivedNotification) async {
+  static Future<void> onNotificationDisplayedMethod(
+      ReceivedNotification receivedNotification) async {
     // Your code goes here
   }
 
   /// Use this method to detect if the user dismissed a notification
   @pragma("vm:entry-point")
-  static Future<void> onDismissActionReceivedMethod(ReceivedAction receivedAction) async {
+  static Future<void> onDismissActionReceivedMethod(
+      ReceivedAction receivedAction) async {
     // Your code goes here
   }
 
   /// Use this method to detect when the user taps on a notification or action button
   @pragma("vm:entry-point")
-  static Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
+  static Future<void> onActionReceivedMethod(
+      ReceivedAction receivedAction) async {
     // Your code goes here
 
     // Navigate into pages, avoiding to open the notification details page over another details page already opened
-    MyApp.navigatorKey.currentState?.pushNamedAndRemoveUntil('/notification-page', (route) => (route.settings.name != '/notification-page') || route.isFirst, arguments: receivedAction);
+    MyApp.navigatorKey.currentState?.pushNamedAndRemoveUntil(
+        '/notification-page',
+        (route) =>
+            (route.settings.name != '/notification-page') || route.isFirst,
+        arguments: receivedAction);
   }
 }
