@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 
+//edit
 mixin CustomTheme {
   static const MaterialColor neutralColors = MaterialColor(
     0xFF000000, // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
@@ -66,12 +67,27 @@ mixin CustomTheme {
             borderRadius: BorderRadius.vertical(
           top: Radius.circular(12),
         ))),
-    snackBarTheme: SnackBarThemeData(backgroundColor: Colors.white, elevation: 0),
+    snackBarTheme:
+        SnackBarThemeData(backgroundColor: Colors.white, elevation: 0),
     splashColor: primaryColors.shade400,
     highlightColor: primaryColors.shade200,
-    dialogTheme: DialogTheme(titleTextStyle: TextStyle(color: neutralColors.shade800), backgroundColor: Colors.white),
-    appBarTheme: const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.dark),
-    colorScheme: ColorScheme(brightness: Brightness.light, primary: primaryColors, onPrimary: Colors.white, secondary: secondaryColors, onSecondary: Colors.white, error: const Color(0xffB20D0E), onError: Colors.white, background: Colors.white, onBackground: neutralColors.shade500, surface: Colors.white, onSurface: neutralColors.shade700),
+    dialogTheme: DialogTheme(
+        titleTextStyle: TextStyle(color: neutralColors.shade800),
+        backgroundColor: Colors.white),
+    appBarTheme:
+        const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.dark),
+    colorScheme: ColorScheme(
+        brightness: Brightness.light,
+        primary: primaryColors,
+        onPrimary: Colors.white,
+        secondary: secondaryColors,
+        onSecondary: Colors.white,
+        error: const Color(0xffB20D0E),
+        onError: Colors.white,
+        background: Colors.white,
+        onBackground: neutralColors.shade500,
+        surface: Colors.white,
+        onSurface: neutralColors.shade700),
     textTheme: TextTheme(
         displayLarge: TextStyle(
           color: neutralColors.shade900,
@@ -175,12 +191,14 @@ mixin CustomTheme {
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
-              side: BorderSide(color: CustomTheme.neutralColors.shade300, width: 2),
+              side: BorderSide(
+                  color: CustomTheme.neutralColors.shade300, width: 2),
               borderRadius: BorderRadius.circular(10), // <-- Radius
             ))),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.white),
+            textStyle: const TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w300, color: Colors.white),
             shadowColor: CustomTheme.neutralColors.shade50,
             elevation: 5,
             shape: RoundedRectangleBorder(
